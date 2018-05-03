@@ -1,23 +1,23 @@
-#webpack learning
-##1,安装webpack
-###(安装前确保已经安装node)
-#####本地安装
+# webpack learning
+## 1,安装webpack
+### (安装前确保已经安装node)
+##### 本地安装
 `npm install --save-dev webpack`<br>
 `npm install --save-dev webpack@<version>` 
-#####全局安装
+##### 全局安装
 `npm install --global webpack`
-######(不推荐全局安装 webpack。这会将你项目中的 webpack 锁定到指定版本，并且在使用不同的 webpack 版本的项目中，可能会导致构建失败。)
-##2,对项目目录进行安装
+###### (不推荐全局安装 webpack。这会将你项目中的 webpack 锁定到指定版本，并且在使用不同的 webpack 版本的项目中，可能会导致构建失败。)
+## 2,对项目目录进行安装
 `npm init` <br>
 `npm install --save-dev webpack`
 
-####查看webpack版本
+#### 查看webpack版本
 `webpack -v`
 
-##3,webpack 打包
+## 3,webpack 打包
 `webpack src/entry.js dist/bundle.js`
 
-##4，配置文件
+## 4，配置文件
 ```
  const path = require('path');  
  module.exports={
@@ -40,7 +40,7 @@
     devServer:{}
 }
 ```
-#####多入口、多出口配置
+##### 多入口、多出口配置
 ```
 const path = require('path');
 module.exports={
@@ -65,15 +65,15 @@ module.exports={
     devServer:{}
 }
 ```
-###5,配置文件： 服务和热更新
-#####安装设置webpack-dev-server
+### 5,配置文件： 服务和热更新
+##### 安装设置webpack-dev-server
 `npm install webpack-dev-server --save-dev`
-###6,css打包
-#####安装style-loader
+### 6,css打包
+##### 安装style-loader
 `npm install style-loader --save-dev`
-#####安装css-loader
+##### 安装css-loader
 `npm install --save-dev css-loader`
-#####webpack.config.js
+##### webpack.config.js
 ```
    module:{
         rules: [
@@ -84,19 +84,19 @@ module.exports={
           ]
     },
 ```
-###7,插件配置：js压缩
-#####在webpack.config.js中引入uglifyjs-webpack-glugin插件
+### 7,插件配置：js压缩
+##### 在webpack.config.js中引入uglifyjs-webpack-glugin插件
 `const uglify = require('uglifyjs-webpack-plugin');`
-#####在plugins配置里new一个 uglify对象
+##### 在plugins配置里new一个 uglify对象
 ``` 
 plugins:[
         new uglify()
     ],
 ```
-###7,插件配置：HTML文件的发布
-#####配置webpack.config.js文件，先引入我们的html-webpack-plugin插件。
+### 8,插件配置：HTML文件的发布
+##### 配置webpack.config.js文件，先引入我们的html-webpack-plugin插件。
 `const htmlPlugin= require('html-webpack-plugin');`
-#####在webpack.config.js里的plugins里进行插件配置
+##### 在webpack.config.js里的plugins里进行插件配置
 ```
 new htmlPlugin({
     minify:{
@@ -107,45 +107,45 @@ new htmlPlugin({
    
 })
 ```
-###8,CSS中的图片处理
-#####安装file-loader和url-loader
+### 9,CSS中的图片处理
+##### 安装file-loader和url-loader
 `npm install --save-dev file-loader url-loader`
-###9,CSS分离与图片路径处理
-#####CSS分离:extract-text-webpack-plugin
+### 10,CSS分离与图片路径处理
+##### CSS分离:extract-text-webpack-plugin
 `npm install --save-dev extract-text-webpack-plugin`
-#####引入：安装完成后，需要先用require引入
+##### 引入：安装完成后，需要先用require引入
 `const extractTextPlugin = require("extract-text-webpack-plugin");`
-#####设置Plugins：引入成功后需要在plugins属性中进行配置
+##### 设置Plugins：引入成功后需要在plugins属性中进行配置
 `new extractTextPlugin("/css/index.css")`
-#####分离会导致路径问题，publicPath：是在webpack.config.js文件的output选项中，主要作用就是处理静态文件路径的。
-#####在处理前，我们在webpack.config.js 上方声明一个对象，叫website。
+##### 分离会导致路径问题，publicPath：是在webpack.config.js文件的output选项中，主要作用就是处理静态文件路径的。
+##### 在处理前，我们在webpack.config.js 上方声明一个对象，叫website。
 ```
 var website ={
     publicPath:"http://192.168.1.108:1717/"
 }
 ```
-#####然后在output选项中引用这个对象的publicPath属性
+##### 然后在output选项中引用这个对象的publicPath属性
 ```
 output:{
     publicPath:website.publicPath
 },
 ```
-###10,处理HTML中的图片
-#####安装html-withimg-loader
+### 11,处理HTML中的图片
+##### 安装html-withimg-loader
 `npm install html-withimg-loader --save`
-#####配置loader
+##### 配置loader
 ```
 {
     test: /\.(htm|html)$/i,
     use:[ 'html-withimg-loader'] 
 }
 ```
-###11,Less文件的打包和分离
-#####安装Less
+### 12,Less文件的打包和分离
+##### 安装Less
 `npm install --save-dev less`
-#####安装Less-loader用来打包
+##### 安装Less-loader用来打包
 `npm install --save-dev less-loader`
-#####在webpack.config.js里编写loader配置
+##### 在webpack.config.js里编写loader配置
 ```
 {
     test: /\.less$/,
@@ -158,12 +158,12 @@ output:{
         }]
 }
 ```
-###12,,Sass文件的打包和分离
-#####安装sass
+### 13,Sass文件的打包和分离
+##### 安装sass
 `npm install --save-dev node-sass`
-#####安装sass-loader
+##### 安装sass-loader
 `npm install --save-dev sass-loader`
-#####loader配置
+##### loader配置
 ```
 {
     test: /\.scss$/,
@@ -176,7 +176,7 @@ output:{
     }]
 }
 ```
-#####SASS文件分离
+##### SASS文件分离
 ```
 {
             test: /\.scss$/,
@@ -191,10 +191,10 @@ output:{
             })
  }
 ```
-###13,自动处理CSS3属性前缀postcss-loader
+### 14,自动处理CSS3属性前缀postcss-loader
 #####安装两个包postcss-loader 和autoprefixer（自动添加前缀的插件）
 `npm install --save-dev postcss-loader autoprefixer`
-#####postCSS推荐在项目根目录（和webpack.config.js同级），建立一个postcss.config.js文件。
+##### postCSS推荐在项目根目录（和webpack.config.js同级），建立一个postcss.config.js文件。
 ```
 module.exports = {
     plugins: [
@@ -202,7 +202,7 @@ module.exports = {
     ]
 }
 ```
-#####对postcss.config.js配置完成后，我们还需要编写我们的loader配置。
+##### 对postcss.config.js配置完成后，我们还需要编写我们的loader配置。
 ```
 {
       test: /\.css$/,
@@ -220,7 +220,7 @@ module.exports = {
       ]
 }
 ```
-#####配置提取CSS的loader配置.
+##### 配置提取CSS的loader配置.
 ```
 {
     test: /\.css$/,
@@ -234,24 +234,24 @@ module.exports = {
     
 }
 ```
-###14,消除未使用的CSSPurifyCSS
-#####安装PurifyCSS-webpack
+### 15,消除未使用的CSSPurifyCSS
+##### 安装PurifyCSS-webpack
 `npm i -D purifycss-webpack purify-css`
-#####引入glob
+##### 引入glob
 `const glob = require('glob');`
-#####引入purifycss-webpack
+##### 引入purifycss-webpack
 `const PurifyCSSPlugin = require("purifycss-webpack");`
-#####在webpack.config.js里配置plugins
+##### 在webpack.config.js里配置plugins
 ```
 new PurifyCSSPlugin({
 	paths: glob.sync(path.join(__dirname, 'src/*.html')),
 })
 ```
-######注意：使用这个插件必须配合extract-text-webpack-plugin这个插件
-###15,给webpack增加babel支持
-#####安装依赖包
+###### 注意：使用这个插件必须配合extract-text-webpack-plugin这个插件
+### 16,给webpack增加babel支持
+##### 安装依赖包
 `npm install --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react`
-#####配置Babel
+##### 配置Babel
 ```
 {
     test:/\.(jsx|js)$/,
@@ -266,12 +266,12 @@ new PurifyCSSPlugin({
     exclude:/node_modules/
 }
 ```
-###16,优雅打包第三方类库（jq为例子）
-#####先安装
+### 17,优雅打包第三方类库（jq为例子）
+##### 先安装
 `npm install --save jquery`
-#####用plugin引入
+##### 用plugin引入
 `const webpack = require('webpack')`
-#####配置plugins模块
+##### 配置plugins模块
 ```
 plugins:[
     new webpack.ProvidePlugin({
@@ -279,7 +279,7 @@ plugins:[
     })
 ],
 ```
-###17,watch的正确使用方法
+### 18,watch的正确使用方法
 ```
 watchOptions:{
     //检测修改的时间，以毫秒为单位
@@ -290,20 +290,20 @@ watchOptions:{
     ignored:/node_modules/, 
 }
 ```
-#####BannerPlugin插件
+##### BannerPlugin插件
 `new webpack.BannerPlugin('zxf版权所有，欢迎收看')`
-######需要注意的是在使用这个插件之前必须引入webpack。
+###### 需要注意的是在使用这个插件之前必须引入webpack。
 `const webpack = require('webpack');`
-###18,webpack优化
-#####抽离jquery
-#####抽离的第一步是修改入口文件，把我们的JQuery也加入到入口文件中
+### 19,webpack优化
+##### 抽离jquery
+##### 抽离的第一步是修改入口文件，把我们的JQuery也加入到入口文件中
 ```
 entry:{
         entry:'./src/entry.js',
         jquery:'jquery'
  },
 ```
-#####引入插件
+##### 引入插件
 ```
 new webpack.optimize.CommonsChunkPlugin({
     //name对应入口文件中的名字，我们起的是jQuery
@@ -314,8 +314,8 @@ new webpack.optimize.CommonsChunkPlugin({
     minChunks:2
 }),
 ```
-#####多个第三方类库抽离
-#####先用npm 进行安装
+##### 多个第三方类库抽离
+##### 先用npm 进行安装
 `npm install vue --save`
 #####在入口配置中引入vue和jquery
 ```
@@ -325,7 +325,7 @@ entry:{
     vue:'vue'
 },
 ```
-#####修改CommonsChunkPlugin配置
+##### 修改CommonsChunkPlugin配置
 ```
 new webpack.optimize.CommonsChunkPlugin({
     //name对应入口文件中的名字，我们起的是jQuery
@@ -336,29 +336,29 @@ new webpack.optimize.CommonsChunkPlugin({
     minChunks:2
 }),
 ```
-###19,静态资源集中输出
-#####使用copy-webpack-plugin
+### 20,静态资源集中输出
+##### 使用copy-webpack-plugin
 `npm install --save-dev copy-webpack-plugin`
-#####引入插件
+##### 引入插件
 `const copyWebpackPlugin= require("copy-webpack-plugin")`
-#####配置插件
+##### 配置插件
 ```
 new copyWebpackPlugin([{
     from:__dirname+'/src/public',
     to:'./public'
 }])
 ```
-###20,Json配置文件使用
-####读出Json内容
-#####第一步：现在我们的index.html模板中加入一个层，并给层一个Id，为了是在javascript代码中可以方便引用。
+### 21,Json配置文件使用
+#### 读出Json内容
+##### 第一步：现在我们的index.html模板中加入一个层，并给层一个Id，为了是在javascript代码中可以方便引用。
 `<div id="json"></div>`
-#####第二步：到src文件夹下，找到入口文件entry.js文件。修改里边的代码
+##### 第二步：到src文件夹下，找到入口文件entry.js文件。修改里边的代码
 ```
 var json =require('../config.json');
 document.getElementById("json").innerHTML= json.name;
 ```
-#####第三步：启用我们的npm run start 命令就可以在浏览器中看到结果了。
+##### 第三步：启用我们的npm run start 命令就可以在浏览器中看到结果了。
 
-#####热更新
-#####其实在webpack3中启用热加载相当的容易，只要加入HotModuleReplacementPlugin这个插件就可以了。
+##### 热更新
+##### 其实在webpack3中启用热加载相当的容易，只要加入HotModuleReplacementPlugin这个插件就可以了。
 `new webpack.HotModuleReplacementPlugin()`
