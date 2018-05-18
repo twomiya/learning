@@ -192,7 +192,7 @@ output:{
  }
 ```
 ### 14,自动处理CSS3属性前缀postcss-loader
-#####安装两个包postcss-loader 和autoprefixer（自动添加前缀的插件）
+##### 安装两个包postcss-loader 和autoprefixer（自动添加前缀的插件）
 `npm install --save-dev postcss-loader autoprefixer`
 ##### postCSS推荐在项目根目录（和webpack.config.js同级），建立一个postcss.config.js文件。
 ```
@@ -317,7 +317,7 @@ new webpack.optimize.CommonsChunkPlugin({
 ##### 多个第三方类库抽离
 ##### 先用npm 进行安装
 `npm install vue --save`
-#####在入口配置中引入vue和jquery
+##### 在入口配置中引入vue和jquery
 ```
 entry:{
     entry:'./src/entry.js',
